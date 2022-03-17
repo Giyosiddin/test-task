@@ -1,0 +1,885 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "My Application API documentation",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/companies": {
+            "get": {
+                "tags": [
+                    "Company"
+                ],
+                "summary": "Get all companies",
+                "description": "Get all companies, this route worked only for admin role.",
+                "operationId": "getCompanies",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Company"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/company/{company_id}": {
+            "get": {
+                "tags": [
+                    "Company"
+                ],
+                "summary": "Get company by ID",
+                "description": "Get one company with ID, this route worked only for admin role.",
+                "operationId": "getCompany",
+                "parameters": [
+                    {
+                        "name": "company_id",
+                        "in": "path",
+                        "description": "Company id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Company"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/company/create": {
+            "post": {
+                "tags": [
+                    "Company"
+                ],
+                "summary": "Create company",
+                "description": "Create company, this route worked only for admin role.",
+                "operationId": "addCompany",
+                "requestBody": {
+                    "description": "Create company",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "company_name",
+                                    "supervisor",
+                                    "address",
+                                    "email",
+                                    "website",
+                                    "phone",
+                                    "manager_id"
+                                ],
+                                "properties": {
+                                    "company_name": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Company name"
+                                    },
+                                    "supervisor": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Oliver Jake "
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Uzbekistan Tashkent region, Parkent town"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "test@gmail.com"
+                                    },
+                                    "website": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "https://www.google.com/"
+                                    },
+                                    "phone": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "3333333333"
+                                    },
+                                    "manager_id": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "3"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Company"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/company/update/{company_id}": {
+            "put": {
+                "tags": [
+                    "Company"
+                ],
+                "summary": "Get company by ID",
+                "description": "Update company with ID, this route worked only for admin role.",
+                "operationId": "updateCompany",
+                "parameters": [
+                    {
+                        "name": "company_id",
+                        "in": "path",
+                        "description": "Company id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Update company",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "company_name",
+                                    "supervisor",
+                                    "address",
+                                    "email",
+                                    "website",
+                                    "phone",
+                                    "manager_id"
+                                ],
+                                "properties": {
+                                    "company_name": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Company name"
+                                    },
+                                    "supervisor": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Oliver Jake "
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Uzbekistan Tashkent region, Parkent town"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "test@gmail.com"
+                                    },
+                                    "website": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "https://www.google.com/"
+                                    },
+                                    "phone": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "3333333333"
+                                    },
+                                    "manager_id": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "3"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Company"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/company/delete/{company_id}": {
+            "delete": {
+                "tags": [
+                    "Company"
+                ],
+                "summary": "Delete company by ID",
+                "description": "Delete company with ID, this route worked only for admin role.",
+                "operationId": "deleteCompany",
+                "parameters": [
+                    {
+                        "name": "company_id",
+                        "in": "path",
+                        "description": "Company id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/employees/{company_id}": {
+            "get": {
+                "tags": [
+                    "Employees"
+                ],
+                "summary": "Get all Employees",
+                "description": "Get all employees of one company by company ID , this route worked  for admin and company roles.",
+                "operationId": "getEmployees",
+                "parameters": [
+                    {
+                        "name": "company_id",
+                        "in": "path",
+                        "description": "Company id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Company"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/employee/{employee_id}": {
+            "get": {
+                "tags": [
+                    "Employees"
+                ],
+                "summary": "Get employee by ID",
+                "description": "Get one employee with ID, this route worked for admin and company roles.",
+                "operationId": "getemployee",
+                "parameters": [
+                    {
+                        "name": "employee_id",
+                        "in": "path",
+                        "description": "Employee id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Employee"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/employee/create": {
+            "post": {
+                "tags": [
+                    "Employees"
+                ],
+                "summary": "Create employee",
+                "description": "Create employee, this route worked only for admin and company roles.",
+                "operationId": "addEmployee",
+                "requestBody": {
+                    "description": "Create employee",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "passport_serial",
+                                    "first_name",
+                                    "address",
+                                    "father_name",
+                                    "last_name",
+                                    "position",
+                                    "phone",
+                                    "company_id"
+                                ],
+                                "properties": {
+                                    "passport_serial": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "AA777999"
+                                    },
+                                    "first_name": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Oliver"
+                                    },
+                                    "last_name": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Jake"
+                                    },
+                                    "father_name": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Mike"
+                                    },
+                                    "position": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Manager"
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Uzbekistan Tashkent region, Parkent town"
+                                    },
+                                    "phone": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "3333333333"
+                                    },
+                                    "company_id": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "3"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Company"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/employee/update/{employee_id}": {
+            "put": {
+                "tags": [
+                    "Employees"
+                ],
+                "summary": "Get employee by ID",
+                "description": "Update employee with ID, this route worked for admin and company roles.",
+                "operationId": "updateEmployee",
+                "parameters": [
+                    {
+                        "name": "employee_id",
+                        "in": "path",
+                        "description": "Employee id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Create employee",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "passport_serial",
+                                    "first_name",
+                                    "address",
+                                    "father_name",
+                                    "last_name",
+                                    "position",
+                                    "phone",
+                                    "company_id"
+                                ],
+                                "properties": {
+                                    "passport_serial": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "AA777999"
+                                    },
+                                    "first_name": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Oliver"
+                                    },
+                                    "last_name": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Jake"
+                                    },
+                                    "father_name": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Mike"
+                                    },
+                                    "position": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Manager"
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Uzbekistan Tashkent region, Parkent town"
+                                    },
+                                    "phone": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "3333333333"
+                                    },
+                                    "company_id": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "3"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Employee"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/employee/delete/{employee_id}": {
+            "delete": {
+                "tags": [
+                    "Employees"
+                ],
+                "summary": "Delete employee by ID",
+                "description": "Delete employee with ID, this route worked only for admin and company roles.",
+                "operationId": "deleteEmployee",
+                "parameters": [
+                    {
+                        "name": "employee_id",
+                        "in": "path",
+                        "description": "Employee id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Sign Up",
+                "description": "Register by name, email, password",
+                "operationId": "register",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "user": {
+                                            "$ref": "#/components/schemas/User"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Wrong credentials response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Sorry, wrong details for register. Please try again"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Sign in",
+                "description": "Login by email, password",
+                "operationId": "authLogin",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "user": {
+                                            "$ref": "#/components/schemas/User"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Wrong credentials response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Sorry, wrong email address or password. Please try again"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/logout": {
+            "get": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Logout",
+                "description": "Logout user and invalidate token",
+                "operationId": "authLogout",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Returns when user is not authenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Not authorized"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Company": {
+                "title": "Company",
+                "description": "Company model, companies can be changed or added only by admins.",
+                "xml": {
+                    "name": "Company"
+                }
+            },
+            "Employee": {
+                "title": "Employee",
+                "description": "Employee model, employees can be changed or added by admins and users that have company role.",
+                "xml": {
+                    "name": "Employee"
+                }
+            },
+            "User": {
+                "title": "User",
+                "description": "User model",
+                "xml": {
+                    "name": "User"
+                }
+            }
+        },
+        "securitySchemes": {
+            "bearer": {
+                "type": "http",
+                "description": "Authorization token obtained from logging in.",
+                "name": "Authorization",
+                "in": "header",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}
